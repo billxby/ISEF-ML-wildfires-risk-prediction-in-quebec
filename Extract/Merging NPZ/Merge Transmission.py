@@ -8,16 +8,16 @@ import sys
 from scipy import sparse
 from sklearn.preprocessing import normalize
 
-directory_base = "D:/Users/xubil/OneDrive/Documents/Wildfires Data NPZ/aq_routes_2020_l_arc"
+directory_base = "D:/Users/xubil/OneDrive/Documents/Wildfires Data NPZ/dmti_transmissionlines_2021_l_arc"
 
-items = ["road1", "road2", "road3"]
+items = ["POWER", "TELEPHONE OTHER"]
 
 smat = sparse.load_npz(directory_base+"/"+items[0]+".npz").tocsr()
 # print(smat.shape)
 
-for i in range(1, 3):
+for i in range(1, 2):
     next = sparse.load_npz(directory_base+"/"+items[i]+".npz").tocsr()
     # print(next.shape)
     smat += next
 
-sparse.save_npz("D:/Users/xubil/OneDrive/Documents/Wildfires Data NPZ/aq_routes_2020_l_arc/Routes", smat)
+sparse.save_npz("D:/Users/xubil/OneDrive/Documents/Wildfires Data NPZ/dmti_transmissionlines_2021_l_arc/Lignes", smat)

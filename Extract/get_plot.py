@@ -25,3 +25,19 @@ def get_plot(gdf, target, color):
     
     return plots, titles
 
+
+def get_full_plot(gdf, title, color):
+
+    plots = []
+    titles = []
+    
+    print("Processing item ", title)
+    fig, ax = plt.subplots(facecolor=(0, 0, 0, 0))
+    gdf.plot(ax=ax, color=color)
+    ax.set_axis_off()
+    ax.set_facecolor((0, 0, 0, 0))
+    plots.append((fig, ax))
+    titles.append(title)
+    
+    return plots, titles
+
