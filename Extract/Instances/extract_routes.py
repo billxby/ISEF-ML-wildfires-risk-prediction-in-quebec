@@ -37,7 +37,7 @@ for i in range(1, 4):
     gdf = gpd.read_file("aq_routes_2020_l_arc/aq_routes_2020_l_arc_"+str(i)+".shp") # Path to the shapefile 
     gdf = gdf.to_crs(4326)
 
-    plots,titles = get_full_plot(gdf, "Route", "white") # The second parameter, "type" is changed depending on the Unique class's name we are extracting
+    plots,titles = get_full_plot(gdf, "Route"+str(i), "white") # The second parameter, "type" is changed depending on the Unique class's name we are extracting
 
     target_limit = "limits_4326" 
     xmin, xmax, ymin, ymax = (coords[target_limit]["xmin"]), (coords[target_limit]["xmax"]), (coords[target_limit]["ymin"]), (coords[target_limit]["ymax"])
