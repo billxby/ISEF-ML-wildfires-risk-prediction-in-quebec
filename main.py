@@ -57,6 +57,7 @@ for filename in os.listdir(directory):
         continue
 
     data[filename] = sparse.load_npz(os.path.join(directory, filename))
+    # print(data[filename].shape)
 
 # print(data)
 
@@ -77,8 +78,8 @@ app = Dash(__name__)
 # App layout
 app.layout = html.Div([
     html.Div(children='My First App with Data'),
-    dcc.RangeSlider(0, 59700, marks={0:'0', 59700:'59700'}, value=[x_min, x_max], id='x-slider', allowCross=False),
-    dcc.RangeSlider(0, 36400, marks={0:'0', 36400:'36400'}, value=[y_min, y_max], id='y-slider', allowCross=False),
+    dcc.RangeSlider(0, 75438, marks={0:'0', 75438:'75438'}, value=[x_min, x_max], id='x-slider', allowCross=False),
+    dcc.RangeSlider(0, 46080, marks={0:'0', 46080:'46080'}, value=[y_min, y_max], id='y-slider', allowCross=False),
     html.Div(id='output-graphs')
     # dcc.Graph(figure={}, style={'height': str(nrow*30)+"vw"}, id='output-graph')
 ])

@@ -5,7 +5,7 @@ import os
 import matplotlib as mpl
 from scipy import sparse
 
-file_extension = ""
+file_extension = "_5" # "", "_1", "_2", "_3", "_4". "_5"
 
 coords = {
     "limits_4326": {
@@ -13,6 +13,12 @@ coords = {
         "xmax": -60.6,
         "ymin": 44.6,
         "ymax": 52.6
+    },
+    "limits_testing_2_chunks": {
+        "xmin":-70.4,
+        "xmax": -70,
+        "ymin": 50,
+        "ymax": 50.1
     },
 }
 mpl.rcParams['figure.dpi'] = 120
@@ -39,9 +45,14 @@ def get_plot(gdf, target, color):
     
     return plots, titles
 
+# a = sparse.csr_matrix((100, 100))
+# a[0][0] = 1
 
+# sparse.save_npz("data/ok.npz", a)
 
-gdf = gpd.read_file("bdat_hypso_l_arc/bdat_hypso_l_arc"+file_extension+".shp") # Path to the shapefile 
+print("Start Read", flush=True)
+
+gdf = gpd.read_file("mrnf_20k_peu_ecofo_ori_poly"+file_extension+"/mrnf_20k_peu_ecofo_ori_poly"+file_extension+".shp") # Path to the shapefile 
 gdf = gdf.to_crs(4326)
 gdf = gdf.fillna("None")
 
@@ -50,6 +61,7 @@ plots,titles = get_plot(gdf, "type_couv", "white") # The second parameter, "type
 target_limit = "limits_4326" 
 xmin, xmax, ymin, ymax = (coords[target_limit]["xmin"]), (coords[target_limit]["xmax"]), (coords[target_limit]["ymin"]), (coords[target_limit]["ymax"])
 
+print("Done Reading", flush=True)
 
 min_row, max_row, min_col, max_col = 0, 575, 3, 764 
 xyratio = 2/1
@@ -61,13 +73,18 @@ n_chunky = int(round((ymax-ymin)/resy, 1)) # We're using round to not get like 2
 
 for item_idx in range(len(plots)):
     # Declare sparse matrix with a defined width, so we can concat later on axis = 0
-    smat_item = sparse.csr_matrix((0, (max_col-min_col+1)*n_chunky)) 
+    
+
+    smat_item = sparse.csr_matrix(((max_row-min_row+1)*n_chunky, 0)) 
 
     plots[item_idx][0].tight_layout(pad=0, rect=(0,0,0,0))
 
     for x_idx in range(n_chunkx):
         # Similarly, declare a sparse matrix with a defined height for easier concat on axis = 1
-        smat_chunk_row = sparse.csr_matrix((max_row-min_row+1, 0))
+        smat_chunk_row = sparse.csr_matrix((0, max_col-min_col+1))
+
+        print(round(xmin+(x_idx)*resx, 1),
+                round(xmin+(x_idx+1)*resx, 1))
 
         for y_idx in range(n_chunky):
             plots[item_idx][1].axis([
@@ -76,20 +93,31 @@ for item_idx in range(len(plots)):
                 round(ymin+(y_idx)*resy, 1),
                 round(ymin+(y_idx+1)*resy, 1)
             ])
+
+            # print(round(xmin+(x_idx)*resx, 1),
+            #     round(xmin+(x_idx+1)*resx, 1),
+            #     round(ymin+(y_idx)*resy, 1),
+            #     round(ymin+(y_idx+1)*resy, 1))
             
             plots[item_idx][0].canvas.draw()
             data = np.frombuffer(plots[item_idx][0].canvas.buffer_rgba(), dtype=np.uint8)
             image = data.reshape(plots[item_idx][0].canvas.get_width_height()[::-1] + (4,)) # Get the 3d array of the chunk
             new_image = np.round(np.squeeze(image[:, :, 3:])/255.0, 3)[:, min_col:max_col+1] # Convert to matrix & get relevant area only
 
-            smat_chunk_row = sparse.hstack((smat_chunk_row, sparse.csr_matrix(new_image)))
+            # print(new_image.shape)
+
+            smat_chunk_row = sparse.vstack((sparse.csr_matrix(new_image), smat_chunk_row))
             del data, image, new_image # Save memory 
         
-        smat_item = sparse.vstack((smat_chunk_row, smat_item))
+        # print(smat_chunk_row.shape, smat_item.shape)
+
+        smat_item = sparse.hstack((smat_item, smat_chunk_row))
         del smat_chunk_row
 
+    print("Finished processing this ", titles[item_idx])
     sparse.save_npz("data/"+titles[item_idx]+".npz", smat_item) # Save the sparse matrix
     del smat_item # Free Up Memory
 
+# print("WHAT IS GOING ON")
 
 os.system("sudo poweroff")

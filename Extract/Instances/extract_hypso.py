@@ -31,7 +31,7 @@ def get_full_plot(gdf, title, color):
     return plots, titles
 
 
-gdf = gpd.read_file("bdat_hypso_l_arc/bdat_hypso_l_arc.shp") # Path to the shapefile 
+gdf = gpd.read_file(r"D:\Users\xubil\OneDrive\Documents\Wildfires Data\bdat_hypso_l_arc\bdat_hypso_l_arc.shp") # Path to the shapefile 
 gdf = gdf.to_crs(4326)
 
 plots,titles = get_full_plot(gdf, "Hypsometrie", "white") # The second parameter, "type" is changed depending on the Unique class's name we are extracting
@@ -92,8 +92,8 @@ for item_idx in range(len(plots)):
         del smat_chunk_row
 
     print("Finished processing this ", titles[item_idx])
-    sparse.save_npz("data/"+titles[item_idx]+".npz", smat_item) # Save the sparse matrix
+    sparse.save_npz("data-sample/"+titles[item_idx]+".npz", smat_item) # Save the sparse matrix
     del smat_item # Free Up Memory
 
 print("Saved and Done!")
-os.system("sudo poweroff")
+# os.system("sudo poweroff")
