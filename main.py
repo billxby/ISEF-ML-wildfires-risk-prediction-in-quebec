@@ -41,6 +41,7 @@ def create_figure():
 
     for filename in processed:
         fig.add_trace(go.Heatmap(z=processed[filename], name=filename), row=curr_row, col=curr_col)
+        fig['layout']['yaxis']['autorange'] = "reversed"
 
         if curr_col == max_col:
             curr_row += 1
@@ -77,7 +78,6 @@ app = Dash(__name__)
 
 # App layout
 app.layout = html.Div([
-    html.Div(children='My First App with Data'),
     dcc.RangeSlider(0, 75438, marks={0:'0', 75438:'75438'}, value=[x_min, x_max], id='x-slider', allowCross=False),
     dcc.RangeSlider(0, 46080, marks={0:'0', 46080:'46080'}, value=[y_min, y_max], id='y-slider', allowCross=False),
     html.Div(id='output-graphs')

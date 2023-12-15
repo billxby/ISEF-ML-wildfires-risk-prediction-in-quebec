@@ -11,6 +11,12 @@
         "ymin": 50,
         "ymax": 50.3
     },
+    "limits_testing_training_chunk": {
+        "xmin":-70.4,
+        "xmax": -70.355,
+        "ymin": 50,
+        "ymax": 50.045
+    },
     "limits_32198_old": {
         "xmin":-8953229.45098,
         "xmax":-6750696.01502,
