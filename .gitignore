@@ -2,3 +2,5 @@
 /Extact/__pycache__
 /Extract/cache
 data-sample/
+Extract/__pycache__
+Extract/.env
