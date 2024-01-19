@@ -1,1 +1,0 @@
-dmti_transmissionlines_2021_l_arc

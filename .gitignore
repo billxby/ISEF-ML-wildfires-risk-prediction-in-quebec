@@ -4,3 +4,7 @@
 data-sample/
 Extract/__pycache__
 Extract/.env
+Extract/NASA API/.env
+data/Hydrographie.npz
+data/Route.npz
+data/Lignes.npz
