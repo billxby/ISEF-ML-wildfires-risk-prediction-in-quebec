@@ -115,32 +115,3 @@ for requestFile in os.listdir(requestsDir):
     np.save("processed_files", processedFiles)
 
 count = 0
-
-for bounds in Training["Human"]:
-  newinput = np.array([])
-  print("ok")
-  print(newinput.shape)
-  for dataset in data:
-    # print(dataset)
-    print("okk")
-    minx, maxx, miny, maxy = boundsToMat(bounds, dataset.shape)
-
-    data_raw = dataset[minx:maxx, miny:maxy].todense()
-    if (data_raw.size == 0):
-      print("isNone ok skip")
-      continue
-    data_process = cv2.resize(data_raw, dsize=(12, 12), interpolation=cv2.INTER_CUBIC).ravel()
-    newinput = np.concatenate((newinput, data_process))
-
-    print(data_process.shape)
-    # print(data_process)
-    # newinput = np.concatenate((newinput, data_process.ravel()))
-    # print(dataset[minx:maxx, miny:maxy].todense().reshape(-1))
-    # print(dataset[minx:maxx, miny:maxy].todense().reshape(-1)[0].shape)
-
-  print(newinput)
-  print(newinput.shape)
-
-  if count >= 0:
-    break
-  count+=1

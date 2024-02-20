@@ -8,3 +8,7 @@ Extract/NASA API/.env
 data/Hydrographie.npz
 data/Route.npz
 data/Lignes.npz
+datasets/trainX_base.npy
+datasets/trainX.npy
+datasets/trainY_base.npy
+datasets/trainY.npy
