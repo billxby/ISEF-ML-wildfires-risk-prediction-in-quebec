@@ -2,6 +2,10 @@
 
 For additional questions or help on running certain parts of the code, please email: xubill0707@gmail.com
 
+See pip_list.txt for the required libraries and the python version.
+A few of the files are Jupyter Notebooks, be ready to run .ipynb files. 
+Python should be able to run on any OS with the right python version installed. 
+
 Here is an explanation of each folder and subfolder's use:
 
 1. /data:
