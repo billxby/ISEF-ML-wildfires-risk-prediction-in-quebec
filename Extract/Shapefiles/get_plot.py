@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np 
 import matplotlib as mpl
 
+# Util file functions
+
 # Set resolution
 mpl.rcParams['figure.dpi'] = 300
 
