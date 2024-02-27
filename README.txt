@@ -1,3 +1,12 @@
+# Quebec Wildfire Risk Prediction Project
+This is a science fair project aiming to forecast wildfire occurence risks in regions of Quebec based on topography, hydrography, meteorological, and human activity data. 
+
+### Datasets Used
+SOPFEU Statistics. https://sopfeu.qc.ca/en/statistics/
+Données Québec. https://www.donneesquebec.ca/recherche/fr/dataset/feux-de-foret 
+Geoindex. https://geoapp.bibl.ulaval.ca/
+
+
 ### Getting Started
 
 For additional questions or help on running certain parts of the code, please email: xubill0707@gmail.com
@@ -9,7 +18,7 @@ Python should be able to run on any OS with the right python version installed.
 Here is an explanation of each folder and subfolder's use:
 
 1. /data:
-This folder contains the links to the datas I have obtained or used to generate my training datasets
+This folder contains the links to the data I have obtained or used to generate my training datasets
 
 2. /data-demo:
 This folder contains some demo testing datasets for the plotly web app under the /Visualisation folder to navigate
@@ -20,21 +29,23 @@ This folder contains the bounds of all the bounding boxes (Chunks) that are then
 features in the /data folder or to call the NASA AppEEARS API to obtain Temporal Chunk files also in the /data folder. 
 
 4. /Extract:
-This folder contains all of the process to Extract the initial data before processing them and merging them into training
+This folder contains all of the process to extract the initial data before processing them and merging them into training
 datasets. 
 Subfolders:
     a. NASA API:
     This subfolder contains the code to call the API for the appropriate chunks and then downloading the results of the API
-    call and saving the results as a Chunk .npy file. The `/Google Cloud Instances` inside the NASA API folder is the same fetch
-    requests code but converted into runable Google Cloud Instance scripts to be ran on the cloud to have parallel running 
-    (multiple files running at the same time) and speed up the extraction process. The appropriate chunks borders are also generated
+    call and saving the results as a Chunk .npy file (numpy file). The `/Google Cloud Instances` inside the NASA API folder is the same fetch
+    requests code but converted into runable Google Cloud Instance scripts to be run on the cloud to have multiple files
+    running at the same time and speed up the extraction process. The appropriate chunks borders are also generated
     in this subfolder. 
 
     Helpful link: https://github.com/nasa/AppEEARS-Data-Resources/blob/main/Python/tutorials/AppEEARS_API_Area.ipynb 
 
     To use the files in extract, create a new .env file in the NASA API folder and add the following variables:
-        EARTHDATA_USERNAME = "username"
-        EARTHDATA_PASSWORD = "password"
+        EARTHDATA_USERNAME = "$username" 
+        EARTHDATA_PASSWORD = "$password" 
+    Both variables as strings without the ""
+        e.g. EARTHDATA_USERNAME = BillXu7
     
     b. Requests:
     This subfolder contains the IDs of the API calls we have made. This way, we can fetch the request just by calling the
@@ -58,6 +69,8 @@ Subfolders:
 
 5. /models
 This folder contains the models that I have trained using K-fold cross validation pickled (models are from scikit-learn library)
+A pickled variable is a variable from a python saved into a file, which can be loaded into any other python code as long as the python
+and libraries/package versions are the same. 
 The subfolders are Base (Base model) and Temporal (Temporal model)
 Each of the subfolders have sub-subfolders. The folder `50 50` is the k-fold cross validation done on 50-50 split (50% igntion points,
 50% no fire). The `Splits` folder contains the testing of different training data splits to determine the split generating the highest
@@ -79,7 +92,8 @@ train a model with it:
 Preprocess Temporal Model Yesterday: https://colab.research.google.com/drive/1tpm3dumh7kwDnD-YyZpvocUjjJwUZ8Js?usp=sharing
 ML Wildfires Temporal Yesterday: https://colab.research.google.com/drive/1i4mZIqf3ggBplc36-BA7T19LDkYTD1yN?usp=sharing 
 
-Note: The directories are on my Google Drive, but the files the notebooks use have all been provided as links in the /data folder 
+Note: The folder directories in the Google Colab files are on my Google Drive, but the files the notebooks use 
+have all been provided as links in the /data folder 
 
 8. /Visualisation
 This folder is a plotly web app to visualize and navigate the sparse matrices we have generated. 

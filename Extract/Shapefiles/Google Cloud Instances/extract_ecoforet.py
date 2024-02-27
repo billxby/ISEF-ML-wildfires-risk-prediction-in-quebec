@@ -89,7 +89,7 @@ for item_idx in range(len(plots)):
         for y_idx in range(n_chunky):
             plots[item_idx][1].axis([
                 round(xmin+(x_idx)*resx, 1),
-                round(xmin+(x_idx+1)*resx, 1), # We don't want to get .00000000000000000000001 it's gonna ruin the perfect allignment,
+                round(xmin+(x_idx+1)*resx, 1), # We don't want to get .00000000000000000000001 it's gonna ruin the perfect alignment,
                 round(ymin+(y_idx)*resy, 1),
                 round(ymin+(y_idx+1)*resy, 1)
             ])
@@ -117,7 +117,5 @@ for item_idx in range(len(plots)):
     print("Finished processing this ", titles[item_idx])
     sparse.save_npz("data/"+titles[item_idx]+".npz", smat_item) # Save the sparse matrix
     del smat_item # Free Up Memory
-
-# print("WHAT IS GOING ON")
 
 os.system("sudo poweroff")

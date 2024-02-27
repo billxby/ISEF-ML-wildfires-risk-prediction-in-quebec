@@ -69,7 +69,7 @@ for i in range(1, 4):
             for y_idx in range(n_chunky):
                 plots[item_idx][1].axis([
                     round(xmin+(x_idx)*resx, 1),
-                    round(xmin+(x_idx+1)*resx, 1), # We don't want to get .00000000000000000000001 it's gonna ruin the perfect allignment,
+                    round(xmin+(x_idx+1)*resx, 1), # We don't want to get .00000000000000000000001 it's gonna ruin the perfect alignment,
                     round(ymin+(y_idx)*resy, 1),
                     round(ymin+(y_idx+1)*resy, 1)
                 ])
