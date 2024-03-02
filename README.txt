@@ -5,6 +5,7 @@ This is a science fair project aiming to forecast wildfire occurence risks in re
 SOPFEU Statistics. https://sopfeu.qc.ca/en/statistics/
 Données Québec. https://www.donneesquebec.ca/recherche/fr/dataset/feux-de-foret 
 Geoindex. https://geoapp.bibl.ulaval.ca/
+NASA AppEEARS (GIS Observations): https://appeears.earthdatacloud.nasa.gov/
 
 
 ### Getting Started

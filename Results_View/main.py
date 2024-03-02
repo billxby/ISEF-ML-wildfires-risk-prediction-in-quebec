@@ -76,7 +76,7 @@ app.layout = html.Div([
         html.H1("Model Predictions from Testing Dataset on Random Forest Classifier"),
         html.P("Visualize Test Case Number:"),
         dcc.Slider(
-            id='slider-testcase', min=0, max=500,
+            id='slider-testcase', min=0, max=1000,
             value=0, step=1, marks=None, tooltip={"placement": "bottom", "always_visible": True}
         ),
         html.H3("Predicted"),
