@@ -1,4 +1,4 @@
-# Quebec Wildfire Risk Prediction Project
+# Predicting Wildfire Ignition Risks in Quebec with Machine Learning
 This is a science fair project aiming to forecast wildfire occurence risks in regions of Quebec based on topography, hydrography, meteorological, and human activity data. 
 
 ### Datasets Used
