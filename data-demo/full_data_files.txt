@@ -1,0 +1,9 @@
+The full training data for all the models that have been generated can be found here:
+https://drive.google.com/drive/folders/1E5hYlI2RiEq7_JQf7Fo2iYTwaf-oIh6k?usp=sharing 
+
+The files are called, for example:
+trainX_base.npy
+
+this is the processed training data for input (X values) for the base model
+
+In the folder there are also files like ALL-dates.npy and ALL.npy. These files are the same as in /data-training folder

@@ -1,3 +1,16 @@
+The data consists of static features and temporal features. 
+Static features are cropped from each causal indicator's (feature) extracted sparse matrix from shapefile.
+Temporal features are obtained by fetching NASA's API AppEEARS and I have saved each test data's bounding box/chunk into a single .npy file.
+
 All the files are too large to include on this repo.
 
-Please use: https://drive.google.com/drive/folders/1UDldU29VsawWX0lCg-BL94mGpfTE003J?usp=drive_link
+For Static Geographic Features, please find the sparse matrices at 
+https://drive.google.com/drive/folders/1UDldU29VsawWX0lCg-BL94mGpfTE003J?usp=drive_link
+and at https://drive.google.com/drive/folders/1Z33uN0vkqURATXNHGdag37lQtd_dnPYT?usp=sharing 
+
+For Temporal Individual Chunks, please find the individual chunk data at 
+https://drive.google.com/drive/folders/1WGkSp7iNJQFyi3dIXPO3AQZig1nEovvJ?usp=sharing 
+
+I have also generated Chunks for the Methodology Revision (lagged data)
+Find those chunks here: https://drive.google.com/drive/folders/182lu-6-_X4W22XXoTYcf9pw6AY1GQt4n?usp=sharing 
+

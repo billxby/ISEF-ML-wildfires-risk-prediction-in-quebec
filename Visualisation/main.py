@@ -7,7 +7,10 @@ import numpy as np
 import os
 from dash import Dash, html, dcc, callback, Output, State, Input
 
-directory = "data"
+directory = "data" # The files are too large to manually add to the folder. 
+# To run this code please download the sparse matrices under `files.txt` in the /data folder
+# and then deleting the files.txt file. 
+
 data = {}
 processed = {}
 max_col = 4 # Dashboard 
